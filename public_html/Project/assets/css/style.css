@@ -1,0 +1,207 @@
+/* Default spacing */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 
+        "Segoe UI",
+        Arial,
+        sans-serif;
+    background: #f4f1ea;
+    color: #222;
+    min-height: 100vh;
+}
+
+/* Default heading styling */
+
+h1,
+h2,
+h3 {
+    color: #1b263b;
+    margin-bottom: 20px;
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+
+}
+
+a {
+    color: #b8860b;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+a:hover {
+    color: #8c6500;
+}
+
+/* Default container */
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 50px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.12);
+}
+
+/* Navbar styling */
+
+.navbar {
+    background: #1b263b;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar a {
+    color: white;
+    margin-left: 20px;
+}
+
+.navbar a:hover {
+    color: #d4a017;
+}
+
+/* Form styling */
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-weight: bold;
+    color: #1b263b;
+}
+
+input,
+textarea,
+select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #b8860b;
+    box-shadow: 0 0 5px rgba(184,134,11,0.4);
+}
+
+/* Button styling */
+
+button,
+.button {
+    background: #b8860b;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+button:hover,
+.button:hover {
+    background: #8c6500;
+    transform: translateY(-2px);
+}
+
+/* Site messages */
+
+.error {
+    background: #ffe5e5;
+    color: #a00000;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.success {
+    background: #e6ffed;
+    color: #087830;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Card class */
+
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Book cover styles */
+
+.book-cover {
+    width: 150px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Review rating style */
+
+.rating {
+    color: #d4a017;
+    font-size: 22px;
+}
+
+/* Admin table styles */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th {
+    background: #1b263b;
+    color: white;
+}
+
+td,
+th {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Footer styles */
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #555;
+}

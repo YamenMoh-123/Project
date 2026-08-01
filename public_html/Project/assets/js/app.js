@@ -1,0 +1,18 @@
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("TITLE loaded");
+
+    const loginForm = document.getElementById("loginForm");
+
+    if (loginForm) {
+        loginForm.addEventListener("submit", (event) => {
+            const username = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value;
+
+            if (username === "" || password === "") {
+                event.preventDefault();
+                alert("Please enter both username and password.");
+                return;
+            }
+        });
+    }
+});
