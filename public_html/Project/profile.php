@@ -1,12 +1,12 @@
 <?php
 
-require_once __DIR__ . "/../../includes/auth.php";
+require_once __DIR__ . "/includes/auth.php";
 
 requireLogin();
 
 $pageTitle = "My Profile";
 
-require_once __DIR__ . "/../../includes/header.php";
+require_once __DIR__ . "/includes/header.php";
 
 ?>
 
@@ -47,7 +47,5 @@ require_once __DIR__ . "/../../includes/header.php";
 </div>
 
 <?php
-
-require_once __DIR__ . "/../../includes/footer.php";
-
+require_once __DIR__ . "/includes/footer.php";
 ?>

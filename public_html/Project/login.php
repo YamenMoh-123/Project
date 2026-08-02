@@ -5,6 +5,12 @@ session_start();
 require_once __DIR__ . "/../../config/db.php";
 
 $error = "";
+$success = "";
+
+// display message when user has just created an account
+if (isset($_GET["registered"])) {
+    $success = "Account created successfully. You can now log in.";
+}
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
@@ -28,14 +34,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (!$user) {
         $error = "Invalid email or password";
-
-    } elseif ($user["is_disabled"]) {
+    }
+    elseif ($user["is_disabled"]) {
         $error = "Your account has been disabled";
-
-    } elseif (!password_verify($password, $user["password_hash"])) {
+    }
+    elseif (!password_verify($password, $user["password_hash"])) {
         $error = "Invalid email or password";
-
-    } else {
+    }
+    else {
         $_SESSION["user_id"] = $user["id"];
         $_SESSION["name"] = $user["name"];
         $_SESSION["email"] = $user["email"];
@@ -43,8 +49,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if ($user["is_admin"] == 1) {
             header("Location: admin/dashboard.php");
-
-        } else {
+        } 
+        else {
             header("Location: profile.php");
         }
 
@@ -54,12 +60,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 $pageTitle = "Login";
 
-require_once __DIR__ . "/../../includes/header.php";
+require_once __DIR__ . "/includes/header.php";
 
 ?>
 
 <div class="container">
     <h1> Login </h1>
+
+    <?php if ($success): ?>
+    <p class="success">
+        <?= htmlspecialchars($success) ?>
+    </p>
+
+    <?php endif; ?>
 
     <?php if ($error): ?>
         <p class="error">
@@ -70,18 +83,10 @@ require_once __DIR__ . "/../../includes/header.php";
 
     <form method="POST">
         <label> Email </label>
-
-        <input
-            type="email"
-            name="email"
-            required>
+        <input type="email" name="email" required>
 
         <label> Password </label>
-
-        <input
-            type="password"
-            name="password"
-            required>
+        <input type="password" name="password" required>
 
         <button type="submit"> Login </button>
     </form>
@@ -93,7 +98,5 @@ require_once __DIR__ . "/../../includes/header.php";
 </div>
 
 <?php
-
-require_once __DIR__ . "/../../includes/footer.php";
-
+require_once __DIR__ . "/includes/footer.php";
 ?>

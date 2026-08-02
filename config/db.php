@@ -29,11 +29,10 @@ try {
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ]
     );
+}
 
-} catch (PDOException) {
-    die(
-        "Database connection failed: "
-    );
+catch (PDOException $e) {     
+    die("Database connection failed: " . $e->getMessage()); 
 }
 
 ?>

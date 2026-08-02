@@ -1,25 +1,20 @@
 <?php
 
-require_once __DIR__ . "/../../../includes/auth.php";
+require_once __DIR__ . "/../includes/auth.php";
 
 // make sure only admins can go to this page
 requireAdmin();
 
 $pageTitle = "Admin Dashboard";
 
-require_once __DIR__ . "/../../../includes/header.php";
+require_once __DIR__ . "/../includes/header.php";
 
 ?>
 
-
 <div class="container">
-
     <h1> Admin Dashboard </h1>
 
-    <p>
-        Welcome,
-        <?= htmlspecialchars($_SESSION["name"]) ?>
-    </p>
+    <p> Welcome, <?= htmlspecialchars($_SESSION["name"]) ?> </p>
 
     <div class="card">
         <h2> User Management </h2>
@@ -33,7 +28,7 @@ require_once __DIR__ . "/../../../includes/header.php";
         <h2> Book Management </h2>
         <p> Add, edit, and remove books. </p>
 
-        <a class="button" href="books.php"> Manage Books </a>
+        <a class="button" href="add_book.php"> Add Book </a>
 
     </div>
 
@@ -42,6 +37,14 @@ require_once __DIR__ . "/../../../includes/header.php";
         <p> Manage reviews and comments. </p>
 
         <a class="button" href="reviews.php"> Manage Reviews </a>
+
+    </div>
+
+     <div class="card">
+        <h2> Manage Books </h2>
+        <p> Manage books. </p>
+
+        <a class="button" href="manage_books.php"> Manage Books </a>
 
     </div>
 
@@ -73,7 +76,5 @@ require_once __DIR__ . "/../../../includes/header.php";
 </div>
 
 <?php
-
-require_once __DIR__ . "/../../../includes/footer.php";
-
+require_once __DIR__ . "/../includes/footer.php";
 ?>

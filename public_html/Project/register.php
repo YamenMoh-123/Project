@@ -4,7 +4,6 @@ session_start();
 require_once __DIR__ . "/../../config/db.php";
 
 $error = "";
-$success = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $name = trim($_POST["name"]);
@@ -15,7 +14,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ( empty($name) || empty($email) || empty($password) ) {
         $error = "All fields are required.";
     }
-
     elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = "Invalid email address.";
     }
@@ -23,9 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     elseif ($password !== $confirmPassword) {
         $error = "Passwords do not match.";
     }
-
     else {
-        // Check existing account
+        // check if the email already exists by selecting user from the db with the same email (duplicate)
         $stmt = $pdo->prepare(
             "SELECT id
              FROM users
@@ -37,13 +34,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($stmt->fetch()) {
             $error = "An account with this email already exists.";
         }
-
         else {
-            $passwordHash = password_hash(
-                $password,
-                PASSWORD_DEFAULT
-            );
+            $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
+            // hash the password and insert a new users row
             $stmt = $pdo->prepare(
                 "INSERT INTO users
                 (
@@ -69,69 +63,47 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $passwordHash
             ]);
 
-            $success = "Account created successfully. You may login.";
+            // Redirect to login page with success flag
+            header("Location: login.php?registered=1");
+            exit();
         }
     }
 }
 
 $pageTitle = "Register";
-
-require_once __DIR__ . "/../../includes/header.php";
-
+require_once __DIR__ . "/includes/header.php";
 ?>
 
-
 <div class="container">
-    <h1> Create Account </h1>
+    <h1>Create Account</h1>
 
-    <?php if ($error): ?>
-        <p class="error"> <?= htmlspecialchars($error) ?> </p>
+<?php if ($error): ?>
+    <p class="error"><?= htmlspecialchars($error) ?></p>
+<?php endif; ?>
 
-    <?php endif; ?>
+<form method="POST">
+    <label>Name</label>
+    <input type="text" name="name" required>
 
-    <?php if ($success): ?>
-        <p class="success">
-            <?= htmlspecialchars($success) ?>
-        </p>
+    <label>Email</label>
+    <input type="email" name="email" required>
 
-    <?php endif; ?>
+    <label>Password</label>
+    <input type="password" name="password" required>
 
-    <form method="POST">
-        <label> Name </label>
+    <label>Confirm Password</label>
+    <input type="password" name="confirm_password" required>
 
-        <input
-            type="text"
-            name="name"
-            required>
+    <button type="submit">Register</button>
+</form>
 
-        <label> Email </label>
+<p>
+    Already have an account?
+    <a href="login.php">Login</a>
+</p>
 
-        <input
-            type="email"
-            name="email"
-            required>
-
-        <label> Password </label>
-
-        <input
-            type="password"
-            name="password"
-            required>
-
-        <label> Confirm Password </label>
-
-        <input
-            type="password"
-            name="confirm_password"
-            required>
-
-        <button type="submit"> Register </button>
-
-    </form>
 </div>
 
 <?php
-
-require_once __DIR__ . "/../../includes/footer.php";
-
+require_once __DIR__ . "/includes/footer.php";
 ?>

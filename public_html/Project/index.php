@@ -1,7 +1,7 @@
 <?php
 
 $pageTitle = "Home";
-require_once __DIR__ . "/../../includes/header.php";
+require_once __DIR__ . "/includes/header.php";
 
 ?>
 
@@ -18,12 +18,10 @@ require_once __DIR__ . "/../../includes/header.php";
         <h2> Start Reading </h2>
         <p> Browse books, create reviews, and join discussions. </p>
 
-        <a class="button" href="<?= BASE_URL ?>books.php"> Browse Books </a>
+        <a class="button" href="<?= BASE_URL ?>books/books.php"> Browse Books </a>
     </div>
 </div>
 
 <?php
-
-require_once __DIR__ . "/../../includes/footer.php";
-
+require_once __DIR__ . "/includes/footer.php";
 ?>

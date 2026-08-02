@@ -1,7 +1,7 @@
 <?php
 
 // load config.php for base_url so we can use it across all files
-require_once __DIR__ . "/../config/config.php";
+require_once __DIR__ . "/../../../config/config.php";
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -39,10 +39,11 @@ if (session_status() === PHP_SESSION_NONE) {
 
     <div class="nav-links">
         <a href="<?= BASE_URL ?>index.php"> Home </a>
-        <a href="<?= BASE_URL ?>books.php"> Books </a>
+        <a href="<?= BASE_URL ?>books/books.php"> Books </a>
 
         <!-- only show profile button if a user is logged in -->
         <?php if (isset($_SESSION["user_id"])): ?>
+            <a href="<?= BASE_URL ?>favorites.php">Favorites</a>
             <a href="<?= BASE_URL ?>profile.php"> Profile </a>
 
             <!-- only show admin dashboard if user is logged in and is an admin -->

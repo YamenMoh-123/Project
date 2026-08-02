@@ -205,3 +205,54 @@ footer {
     padding: 25px;
     color: #555;
 }
+
+
+/* book grid */
+
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+/* book card */
+
+.book-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+}
+
+.book-card .book-cover {
+    width: 150px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.book-card h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.book-card p {
+    margin-bottom: 8px;
+}
+
+.book-card .button {
+    margin-top: auto;
+    width: 100%;
+    text-align: center;
+}
