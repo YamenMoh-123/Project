@@ -107,6 +107,10 @@ require_once __DIR__ . "/../includes/header.php";
     </div>
 
     <div class="card">
+        <a class="help-link" href="<?= BASE_URL ?>help/user_advanced.html">
+            How do reviews work?
+        </a>
+
         <?php if (!isset($_SESSION["user_id"])): ?>
             <p> Login to write a review. </p>
 
@@ -192,6 +196,7 @@ require_once __DIR__ . "/../includes/header.php";
 
         <?php endif; ?>
 
+        <!-- loop over all fetched reviews from the db and display them -->
         <?php foreach ($reviews as $review): ?>
             <div class="card">
 

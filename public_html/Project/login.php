@@ -81,6 +81,10 @@ require_once __DIR__ . "/includes/header.php";
 
     <?php endif; ?>
 
+    <a class="help-link" href="<?= BASE_URL ?>help/user_basics.html">
+        Need help logging in?
+    </a>
+
     <form method="POST">
         <label> Email </label>
         <input type="email" name="email" required>

@@ -2,9 +2,20 @@
 
 // load config.php for base_url so we can use it across all files
 require_once __DIR__ . "/../../../config/config.php";
+require_once __DIR__ . "/../../../config/db.php";
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
+}
+
+$stmt = $pdo->query(
+    "SELECT site_theme FROM settings LIMIT 1"
+);
+
+$theme = $stmt->fetchColumn();
+
+if (!$theme) {
+    $theme = "classic";
 }
 
 ?>
@@ -12,54 +23,55 @@ if (session_status() === PHP_SESSION_NONE) {
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            <?= isset($pageTitle) ? htmlspecialchars($pageTitle) : "TITLE" ?>
+        </title>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <?= isset($pageTitle) ? htmlspecialchars($pageTitle) : "TITLE" ?>
-    </title>
+        <meta name="description" content="TITLE - Discover books, write reviews, and discuss books with the community.">
+        <meta name="keywords" content="books, reviews, reading, community">
 
-    <meta name="description" content="TITLE - Discover books, write reviews, and discuss books with the community.">
+        <!-- load css using with base_url as the root path !-->
+        <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/style.css">
+        <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/themes.css">
 
-    <meta name="keywords" content="books, reviews, reading, community">
+    </head>
 
-    <!-- load css using with base_url as the root path !-->
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/style.css">
+    <body class="theme-<?= htmlspecialchars($theme) ?>">
 
-</head>
+    <nav class="navbar">
 
-<body>
+        <div class="logo">
+            <a href="<?= BASE_URL ?>index.php"> TITLE </a>
+        </div>
 
-<nav class="navbar">
+        <div class="nav-links">
+            <a href="<?= BASE_URL ?>index.php"> Home </a>
+            <a href="<?= BASE_URL ?>books/books.php"> Books </a>
 
-    <div class="logo">
-        <a href="<?= BASE_URL ?>index.php"> TITLE </a>
-    </div>
+            <!-- only show profile button if a user is logged in -->
+            <?php if (isset($_SESSION["user_id"])): ?>
+                <a href="<?= BASE_URL ?>favorites.php">Favorites</a>
+                <a href="<?= BASE_URL ?>profile.php"> Profile </a>
 
-    <div class="nav-links">
-        <a href="<?= BASE_URL ?>index.php"> Home </a>
-        <a href="<?= BASE_URL ?>books/books.php"> Books </a>
+                <!-- only show admin dashboard if user is logged in and is an admin -->
+                <?php if ($_SESSION["is_admin"] == 1): ?>
+                    <a href="<?= BASE_URL ?>admin/dashboard.php"> Admin </a>
+                <?php endif; ?>
 
-        <!-- only show profile button if a user is logged in -->
-        <?php if (isset($_SESSION["user_id"])): ?>
-            <a href="<?= BASE_URL ?>favorites.php">Favorites</a>
-            <a href="<?= BASE_URL ?>profile.php"> Profile </a>
+                <a href="<?= BASE_URL ?>logout.php"> Logout </a>
 
-            <!-- only show admin dashboard if user is logged in and is an admin -->
-            <?php if ($_SESSION["is_admin"] == 1): ?>
-                <a href="<?= BASE_URL ?>admin/dashboard.php"> Admin </a>
+            <!-- show login and register buttons if user is not logged in -->
+            <?php else: ?>
+                <a href="<?= BASE_URL ?>login.php"> Login </a>
+                <a href="<?= BASE_URL ?>register.php"> Register </a>
             <?php endif; ?>
 
-            <a href="<?= BASE_URL ?>logout.php"> Logout </a>
+            <a href="<?= BASE_URL ?>help/index.html"> Help </a>
 
-        <!-- show login and register buttons if user is not logged in -->
-        <?php else: ?>
-            <a href="<?= BASE_URL ?>login.php"> Login </a>
-            <a href="<?= BASE_URL ?>register.php"> Register </a>
-        <?php endif; ?>
-
-    </div>
-</nav>
+        </div>
+    </nav>
 
 <main>

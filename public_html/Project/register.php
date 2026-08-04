@@ -77,30 +77,34 @@ require_once __DIR__ . "/includes/header.php";
 <div class="container">
     <h1>Create Account</h1>
 
-<?php if ($error): ?>
-    <p class="error"><?= htmlspecialchars($error) ?></p>
-<?php endif; ?>
+    <?php if ($error): ?>
+        <p class="error"><?= htmlspecialchars($error) ?></p>
+    <?php endif; ?>
 
-<form method="POST">
-    <label>Name</label>
-    <input type="text" name="name" required>
+    <form method="POST">
+        <label>Name</label>
+        <input type="text" name="name" required>
 
-    <label>Email</label>
-    <input type="email" name="email" required>
+        <label>Email</label>
+        <input type="email" name="email" required>
 
-    <label>Password</label>
-    <input type="password" name="password" required>
+        <label>Password</label>
+        <input type="password" name="password" required>
 
-    <label>Confirm Password</label>
-    <input type="password" name="confirm_password" required>
+        <label>Confirm Password</label>
+        <input type="password" name="confirm_password" required>
 
-    <button type="submit">Register</button>
-</form>
+        <button type="submit">Register</button>
+    </form>
 
-<p>
-    Already have an account?
-    <a href="login.php">Login</a>
-</p>
+    <a class="help-link" href="<?= BASE_URL ?>help/user_basics.html">
+        New to TITLE?
+    </a>
+
+    <p>
+        Already have an account?
+        <a href="login.php">Login</a>
+    </p>
 
 </div>
 

@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 $pageTitle = "Add Book";
 
-require_once __DIR__ . "/../../../includes/header.php";
+require_once __DIR__ . "/../includes/header.php";
 
 ?>
 
@@ -99,16 +99,16 @@ require_once __DIR__ . "/../../../includes/header.php";
         <input name="author" required>
 
         <label> Pages </label>
-        <input type="number" name="page_count">
+        <input type="number" name="page_count" required>
 
         <label> Genre </label>
-        <input name="genre">
+        <input name="genre" requierd>
 
         <label> Published Year </label>
-        <input type="number" name="published_year">
+        <input type="number" name="published_year" required>
 
         <label> Description </label>
-        <textarea name="description"></textarea>
+        <textarea name="description"></textarea required>
 
         <label> Book Cover </label>
         <input type="file" name="image" accept="image/*">

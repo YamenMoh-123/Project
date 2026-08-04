@@ -1,63 +1,77 @@
-/* Default spacing */
+/* store main colors as variables so we can change them (using themes) */
+:root {
+    --background-color: #f4f1ea;
+    --card-color: #ffffff;
+    --text-color: #222222;
+    --heading-color: #1b263b;
+    --primary-color: #1b263b;
+    --accent-color: #b8860b;
+    --accent-hover: #8c6500;
+    --border-color: #dddddd;
+    --input-background: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.12);
+}
 
+/* reset default browser spacing */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+/* styling for the page */
+html,
 body {
-    font-family: 
-        "Segoe UI",
-        Arial,
-        sans-serif;
-    background: #f4f1ea;
-    color: #222;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
     min-height: 100vh;
 }
 
-/* Default heading styling */
-
+/* styling for headings */
 h1,
 h2,
 h3 {
-    color: #1b263b;
+    color: var(--heading-color);
     margin-bottom: 20px;
 }
 
+/* styling for paragraphs */
 p {
     line-height: 1.6;
     margin-bottom: 15px;
-
 }
 
+/* styling for links */
 a {
-    color: #b8860b;
+    color: var(--accent-color);
     text-decoration: none;
-    transition: 0.2s;
+    transition: color 0.2s;
 }
 
 a:hover {
-    color: #8c6500;
+    color: var(--accent-hover);
 }
 
-/* Default container */
-
+/* styling for the main container */
 .container {
     width: 90%;
     max-width: 900px;
     margin: 50px auto;
-    background: white;
+    background: var(--card-color);
     padding: 40px;
     border-radius: 15px;
-    box-shadow:
-        0 10px 30px rgba(0,0,0,0.12);
+    box-shadow: 0 10px 30px var(--shadow-color);
 }
 
-/* Navbar styling */
-
+/* styling for the navigation bar */
 .navbar {
-    background: #1b263b;
+    background: var(--primary-color);
     padding: 15px 30px;
     display: flex;
     justify-content: space-between;
@@ -76,11 +90,10 @@ a:hover {
 }
 
 .navbar a:hover {
-    color: #d4a017;
+    color: var(--accent-color);
 }
 
-/* Form styling */
-
+/* styling for forms */
 form {
     display: flex;
     flex-direction: column;
@@ -89,32 +102,32 @@ form {
 
 label {
     font-weight: bold;
-    color: #1b263b;
+    color: var(--heading-color);
 }
 
 input,
 textarea,
 select {
     padding: 12px;
-    border: 1px solid #ccc;
+    background: var(--input-background);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     font-size: 16px;
-    transition: 0.2s;
 }
 
 input:focus,
 textarea:focus,
 select:focus {
     outline: none;
-    border-color: #b8860b;
-    box-shadow: 0 0 5px rgba(184,134,11,0.4);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 5px var(--accent-color);
 }
 
-/* Button styling */
-
+/* styling for buttons */
 button,
 .button {
-    background: #b8860b;
+    background: var(--accent-color);
     color: white;
     border: none;
     padding: 12px 25px;
@@ -122,40 +135,40 @@ button,
     font-size: 16px;
     cursor: pointer;
     transition: 0.25s;
+    display: inline-block;
 }
 
 button:hover,
 .button:hover {
-    background: #8c6500;
+    background: var(--accent-hover);
     transform: translateY(-2px);
 }
 
-/* Site messages */
+/* styling for messages */
+.error,
+.success {
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
 
 .error {
     background: #ffe5e5;
     color: #a00000;
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 15px;
 }
 
 .success {
     background: #e6ffed;
     color: #087830;
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 15px;
 }
 
-/* Card class */
-
+/* styling for cards */
 .card {
-    background: white;
+    background: var(--card-color);
     border-radius: 12px;
     padding: 20px;
     margin: 20px 0;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px var(--shadow-color);
     transition: 0.2s;
 }
 
@@ -163,8 +176,7 @@ button:hover,
     transform: translateY(-5px);
 }
 
-/* Book cover styles */
-
+/* styling for book cover images */
 .book-cover {
     width: 150px;
     height: 220px;
@@ -172,43 +184,7 @@ button:hover,
     border-radius: 8px;
 }
 
-/* Review rating style */
-
-.rating {
-    color: #d4a017;
-    font-size: 22px;
-}
-
-/* Admin table styles */
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-th {
-    background: #1b263b;
-    color: white;
-}
-
-td,
-th {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-}
-
-/* Footer styles */
-
-footer {
-    text-align: center;
-    padding: 25px;
-    color: #555;
-}
-
-
-/* book grid */
-
+/* styling for book grid layouts */
 .book-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -216,13 +192,31 @@ footer {
     margin-top: 30px;
 }
 
-/* book card */
+.book-grid-5,
+.book-grid-4,
+.book-grid-3 {
+    display: grid;
+    gap: 25px;
+}
 
+.book-grid-5 {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.book-grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.book-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* styling for individual book cards */
 .book-card {
-    background: white;
+    background: var(--card-color);
     border-radius: 12px;
     padding: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px var(--shadow-color);
     transition: 0.2s;
     display: flex;
     flex-direction: column;
@@ -235,10 +229,6 @@ footer {
 }
 
 .book-card .book-cover {
-    width: 150px;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 8px;
     margin-bottom: 15px;
 }
 
@@ -254,5 +244,159 @@ footer {
 .book-card .button {
     margin-top: auto;
     width: 100%;
+}
+
+/* styling for ratings */
+.rating {
+    color: var(--accent-color);
+    font-size: 22px;
+}
+
+/* styling for tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th {
+    background: var(--primary-color);
+    color: white;
+}
+
+td,
+th {
+    padding: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* styling for the footer */
+footer {
     text-align: center;
+    padding: 25px;
+    color: var(--text-color);
+}
+
+/* styling for admin controls */
+.admin-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* styling for the help link */
+.help-link {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 15px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.help-link:hover {
+    background: var(--accent-color);
+    color: white;
+}
+
+/* mobile layout styling for different sizes*/
+@media (max-width: 700px) {
+    .book-grid-5,
+    .book-grid-4,
+    .book-grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    p {
+        font-size: 15px;
+    }
+
+    .container {
+        width: 95%;
+        padding: 20px;
+        margin: 20px auto;
+        border-radius: 10px;
+    }
+
+    .navbar {
+        padding: 15px;
+    }
+
+    .navbar .logo {
+        font-size: 22px;
+    }
+
+    .navbar a {
+        display: block;
+        margin: 10px 0;
+    }
+
+    button,
+    .button {
+        width: 100%;
+        text-align: center;
+        display: block;
+    }
+
+    input,
+    textarea,
+    select {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .book-grid-5,
+    .book-grid-4,
+    .book-grid-3 {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .book-card {
+        padding: 15px;
+    }
+
+    .book-card .book-cover {
+        width: 140px;
+        height: 205px;
+    }
+
+    .card {
+        padding: 15px;
+        margin: 15px 0;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 400px) {
+    .container {
+        width: 98%;
+        padding: 15px;
+    }
+
+    .book-card .book-cover {
+        width: 120px;
+        height: 180px;
+    }
 }

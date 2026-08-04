@@ -1,0 +1,28 @@
+/* Theme styles that change our variables for our main style.css */
+
+/* Classic Library */
+.theme-classic {
+    --background-color: #f4f1ea;
+    --card-color: white;
+    --text-color: #222;
+    --primary-color: #1b263b;
+    --accent-color: #b8860b;
+}
+
+/* Dark Mode */
+.theme-dark {
+    --background-color: #121212;
+    --card-color: #1e1e1e;
+    --text-color: #eeeeee;
+    --primary-color: #90caf9;
+    --accent-color: #bb86fc;
+}
+
+/* Modern Blue */
+.theme-modern {
+    --background-color: #eef6ff;
+    --card-color: white;
+    --text-color: #1f2937;
+    --primary-color: #2563eb;
+    --accent-color: #38bdf8;
+}

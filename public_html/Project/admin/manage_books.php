@@ -31,6 +31,10 @@ require_once __DIR__ . "/../includes/header.php";
 
 <div class="container">
 
+    <a class="help-link" href="<?= BASE_URL ?>help/admin_basics.html">
+        Managing books help
+    </a>
+
     <h1> Manage Books </h1>
     <a class="button" href="add_book.php"> Add New Book </a>
 

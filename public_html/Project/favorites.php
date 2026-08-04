@@ -35,48 +35,49 @@ $books = $stmt->fetchAll();
 
 <div class="container">
 
-<h1>My Favorite Books</h1>
+    <a class="help-link" href="<?= BASE_URL ?>help/user_basics.html">
+        Managing favourites help
+    </a>
 
-<?php if (empty($books)): ?>
-    <p>You have not added any books to your favorites yet.</p>
+    <h1>My Favorite Books</h1>
 
-<?php else: ?>
-    <div class="book-grid">
+    <?php if (empty($books)): ?>
+        <p>You have not added any books to your favorites yet.</p>
 
-        <?php foreach ($books as $book): ?>
-            <div class="book-card">
+    <?php else: ?>
+        <div class="book-grid">
 
-                <?php if (!empty($book["image"])): ?>
-                    <img
-                        src="<?= htmlspecialchars($book["image"]) ?>"
-                        alt="<?= htmlspecialchars($book["title"]) ?> cover"
-                        class="book-cover">
+            <?php foreach ($books as $book): ?>
+                <div class="book-card">
 
-                <?php else: ?>
-                    <img
-                        src="https://placehold.co/150x220?text=Book"
-                        alt="Book cover placeholder"
-                        class="book-cover">
+                    <?php if (!empty($book["image"])): ?>
+                        <img
+                            src="<?= htmlspecialchars($book["image"]) ?>"
+                            alt="<?= htmlspecialchars($book["title"]) ?> cover"
+                            class="book-cover">
 
-                <?php endif; ?>
+                    <?php else: ?>
+                        <img
+                            src="https://placehold.co/150x220?text=Book"
+                            alt="Book cover placeholder"
+                            class="book-cover">
 
-                <h2><?= htmlspecialchars($book["title"]) ?></h2>
+                    <?php endif; ?>
 
-                <p><strong>Author:</strong> <?= htmlspecialchars($book["author"]) ?></p>
+                    <h2><?= htmlspecialchars($book["title"]) ?></h2>
 
-                <p><strong>Genre:</strong> <?= htmlspecialchars($book["genre"] ?: "Unknown") ?></p>
+                    <p><strong>Author:</strong> <?= htmlspecialchars($book["author"]) ?></p>
+                    <p><strong>Genre:</strong> <?= htmlspecialchars($book["genre"] ?: "Unknown") ?></p>
 
-                <a class="button" href="books/book.php?id=<?= urlencode($book["id"]) ?>">
-                    View Details
-                </a>
-            </div>
+                    <a class="button" href="books/book.php?id=<?= urlencode($book["id"]) ?>">
+                        View Details
+                    </a>
 
-        <?php endforeach; ?>
+                </div>
+            <?php endforeach; ?>
+        </div>
 
-    </div>
-
-<?php endif; ?>
-
+    <?php endif; ?>
 </div>
 
 <?php
