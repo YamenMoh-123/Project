@@ -10,6 +10,24 @@ Admins can manage reviews, books, and users
 
 # Features
 
+## Important features
+
+## ADMIN LOGIN
+admin@admin.com
+admin123
+
+---
+
+1. description in help -> about
+2. 20 books listed with options
+3. 3 color schemes and 3 layout options in admin website settings
+4. Dynamic forms for searching, user, review, and book management
+5. schema.sql included in github for database structure
+6. 6 wiki help pages for site use
+7. nav bar on each page for menu options
+8. 20 pages, 3 video files in help, css, jss, 20 images for book listing. instructions to add / remove books in help wiki
+9. hosted on myweb
+
 ## User Features
 
 - Users can create accounts and login
