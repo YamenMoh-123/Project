@@ -17,9 +17,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $description = trim($_POST["description"]);
     $genre = trim($_POST["genre"]);
     $year = $_POST["published_year"];
+    $format = $_POST["format"] ?? "Paperback";
+    $language = $_POST["language"] ?? "English";
 
     if (!$title || !$author) {
         $error = "Title and author are required.";
+    }
+    if (empty($format)) {
+        $errors[] = "Format is required.";
+    }
+    if (empty($language)) {
+        $errors[] = "Language is required.";
     }
     else {
         $stmt = $pdo->prepare(
@@ -27,30 +35,30 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             (
                 title,
                 author,
-                page_count,
-                description,
                 genre,
-                published_year
+                page_count,
+                published_year,
+                description,
+                image,
+                format,
+                language
             )
-
             VALUES
             (
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?
+                ?, ?, ?, ?, ?, ?, ?, ?, ?
             )"
         );
 
         $stmt->execute([
             $title,
             $author,
-            $pages,
-            $description,
             $genre,
-            $year
+            $pages,
+            $year,
+            $description,
+            $image,
+            $format,
+            $language
         ]);
 
         $bookId = $pdo->lastInsertId();
@@ -103,6 +111,21 @@ require_once __DIR__ . "/../includes/header.php";
 
         <label> Genre </label>
         <input name="genre" requierd>
+
+        <label>Format</label>
+        <select name="format" required>
+            <option value="Hardcover">Hardcover</option>
+            <option value="Paperback" selected>Paperback</option>
+            <option value="eBook">eBook</option>
+        </select>
+
+        <label>Language</label>
+        <select name="language" required>
+            <option value="English" selected>English</option>
+            <option value="French">French</option>
+            <option value="Arabic">Arabic</option>
+            <option value="Spanish">Spanish</option>
+        </select>
 
         <label> Published Year </label>
         <input type="number" name="published_year" required>

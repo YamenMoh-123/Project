@@ -7,7 +7,7 @@ require_once __DIR__ . "/includes/header.php";
 
 <div class="container">
 
-<h1> Welcome to TITLE </h1>
+<h1> Welcome to Book Archive </h1>
 
     <p>
         A community platform where users discover books,

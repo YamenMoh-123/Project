@@ -93,6 +93,16 @@ require_once __DIR__ . "/../includes/header.php";
         <h3> <?= htmlspecialchars($book["author"]) ?> </h3>
 
         <p> Genre: <?= htmlspecialchars($book["genre"] ?? "") ?> </p>
+        <p>
+        <strong>Format:</strong>
+            <?= htmlspecialchars($book["format"] ?: "Paperback") ?>
+        </p>
+
+        <p>
+            <strong>Language:</strong>
+            <?= htmlspecialchars($book["language"] ?: "English") ?>
+        </p>
+
         <p> Pages: <?= htmlspecialchars($book["page_count"] ?? "") ?> </p>
         <p> Published: <?= htmlspecialchars($book["published_year"] ?? "") ?> </p>
 

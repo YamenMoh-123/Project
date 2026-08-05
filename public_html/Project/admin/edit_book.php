@@ -36,6 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $pages = $_POST["page_count"];
     $description = trim($_POST["description"]);
     $genre = trim($_POST["genre"]);
+    $format = $_POST["format"] ?? "Paperback";
+    $language = $_POST["language"] ?? "English";
     $year = $_POST["published_year"];
 
     if (!$title || !$author) {
@@ -54,27 +56,29 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $stmt = $pdo->prepare(
             "UPDATE books
-
             SET
-                title=?,
-                author=?,
-                page_count=?,
-                description=?,
-                image=?,
-                genre=?,
-                published_year=?
-
-            WHERE id=?"
+                title = ?,
+                author = ?,
+                genre = ?,
+                page_count = ?,
+                published_year = ?,
+                description = ?,
+                image = ?,
+                format = ?,
+                language = ?
+            WHERE id = ?"
         );
 
         $stmt->execute([
             $title,
             $author,
+            $genre,
             $pages,
+            $year,
             $description,
             $image,
-            $genre,
-            $year,
+            $format,
+            $language,
             $id
         ]);
 
@@ -115,6 +119,21 @@ require_once __DIR__ . "/../includes/header.php";
         <input
         name="genre"
         value="<?= htmlspecialchars($book["genre"] ?? "") ?>">
+
+        <label>Format</label>
+        <select name="format" required>
+            <option value="Hardcover" <?= $book["format"] === "Hardcover" ? "selected" : "" ?>>Hardcover</option>
+            <option value="Paperback" <?= $book["format"] === "Paperback" ? "selected" : "" ?>>Paperback</option>
+            <option value="eBook" <?= $book["format"] === "eBook" ? "selected" : "" ?>>eBook</option>
+        </select>
+
+        <label>Language</label>
+        <select name="language" required>
+            <option value="English" <?= $book["language"] === "English" ? "selected" : "" ?>>English</option>
+            <option value="French" <?= $book["language"] === "French" ? "selected" : "" ?>>French</option>
+            <option value="Arabic" <?= $book["language"] === "Arabic" ? "selected" : "" ?>>Arabic</option>
+            <option value="Spanish" <?= $book["language"] === "Spanish" ? "selected" : "" ?>>Spanish</option>
+        </select>
 
         <label> Published Year </label>
         <input

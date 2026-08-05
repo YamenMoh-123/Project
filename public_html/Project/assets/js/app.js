@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("TITLE loaded");
-
     const loginForm = document.getElementById("loginForm");
 
     if (loginForm) {

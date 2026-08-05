@@ -98,7 +98,7 @@ require_once __DIR__ . "/includes/header.php";
     </form>
 
     <a class="help-link" href="<?= BASE_URL ?>help/user_basics.html">
-        New to TITLE?
+        New to Book Archive?
     </a>
 
     <p>

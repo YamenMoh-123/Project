@@ -140,7 +140,7 @@ if (isset($_SESSION["user_id"])) {
 <div class="container">
     <h1> Book Catalogue </h1>
 
-    <p> Browse and search all books available on TITLE. </p>
+    <p> Browse and search all books available on Book Archive. </p>
 
     <div class="card">
         <a class="help-link" href="<?= BASE_URL ?>help/user_advanced.html">
@@ -255,7 +255,17 @@ if (isset($_SESSION["user_id"])) {
 
             <p>
                 <strong>Genre:</strong>
-                ?= htmlspecialchars($book["genre"] ?: "Unknown") ?>
+                <?= htmlspecialchars($book["genre"] ?: "Unknown") ?>
+            </p>
+
+            <p>
+                <strong>Format:</strong>
+                <?= htmlspecialchars($book["format"] ?: "Paperback") ?>
+            </p>
+
+            <p>
+                <strong>Language:</strong>
+                <?= htmlspecialchars($book["language"] ?: "English") ?>
             </p>
 
             <p>

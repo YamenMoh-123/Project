@@ -27,11 +27,13 @@ if (!$theme) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>
-            <?= isset($pageTitle) ? htmlspecialchars($pageTitle) : "TITLE" ?>
+            <?= isset($pageTitle) ? htmlspecialchars($pageTitle) : "Book Archive" ?>
         </title>
 
-        <meta name="description" content="TITLE - Discover books, write reviews, and discuss books with the community.">
+        <meta name="description" content="Book Archive - Discover books, write reviews, and discuss books with the community.">
         <meta name="keywords" content="books, reviews, reading, community">
+
+        <link rel="icon" type="image/jpeg" href="<?= BASE_URL ?>assets/images/icon.jpg">
 
         <!-- load css using with base_url as the root path !-->
         <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/style.css">
@@ -44,7 +46,7 @@ if (!$theme) {
     <nav class="navbar">
 
         <div class="logo">
-            <a href="<?= BASE_URL ?>index.php"> TITLE </a>
+            <a href="<?= BASE_URL ?>index.php"> Book Archive </a>
         </div>
 
         <div class="nav-links">

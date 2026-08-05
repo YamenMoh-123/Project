@@ -7,12 +7,12 @@ requireAdmin();
 require_once __DIR__ . "/../../../config/db.php";
 
 // if we cant find the book id redirect back
-if (!isset($_GET["id"])) {
+if ($_SERVER["REQUEST_METHOD"] !== "POST" || !isset($_POST["id"])) {
     header("Location: manage_books.php");
     exit;
 }
 
-$bookId = $_GET["id"];
+$bookId = $_POST["id"];
 
 // first we get the image path for this book id from the db
 $stmt = $pdo->prepare(

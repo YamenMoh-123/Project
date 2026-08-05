@@ -2,7 +2,7 @@
 
 <footer>
     <p>
-        © <?= date("Y") ?> TITLE. All rights reserved.
+        © <?= date("Y") ?> Book Archive. All rights reserved.
     </p>
 </footer>
 

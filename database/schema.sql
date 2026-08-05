@@ -16,6 +16,8 @@ CREATE TABLE books (
     description TEXT,
     image VARCHAR(255),
     genre VARCHAR(100),
+    format VARCHAR(50) NOT NULL DEFAULT 'Paperback',
+    language VARCHAR(50) NOT NULL DEFAULT 'English',
     published_year INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UNIQUE(title, author)

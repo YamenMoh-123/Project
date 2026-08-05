@@ -1,6 +1,6 @@
-# TITLE
+# Book Archive
 
-TITLE is a PHP and MySQL based online book catalogue website.
+Book Archive is a PHP and MySQL based online book catalogue website.
 
 This website allows users to view books, leave ratings and comments, and favorite books.
 
@@ -99,7 +99,7 @@ a .env file exists outside the root as well
 
 # Database
 
-TITLE uses a MySQL database containing:
+Book Archive uses a MySQL database containing:
 
 - Users
 - Books
@@ -143,7 +143,7 @@ Images are uploaded through the administrator book management interface.
 ---
 
 # Themes
-TITLE supports multiple website themes.
+Book Archive supports multiple website themes.
 
 Available themes include:
 - Classic
@@ -166,9 +166,9 @@ Documentation includes:
 
 ---
 
-# TITLE Installation Guide
+# Book Archive Installation Guide
 
-Installation instructions for TITLE
+Installation instructions for Book Archive
 
 ---
 
@@ -190,7 +190,7 @@ directory/Project
 In MySql create a database:
 
 ```sql
-CREATE DATABASE TITLE;
+CREATE DATABASE Book Archive;
 ```
 
 create the database structure from database/schema.sql by copying the create table commands
@@ -200,7 +200,7 @@ create the database structure from database/schema.sql by copying the create tab
 Open config/db.php
 Update the database settings:
 $host = "localhost";
-$dbname = "TITLE";
+$dbname = "Book Archive";
 $username = "your_username";
 $password = "your_password";
 Save the file.
