@@ -58,33 +58,34 @@ if (isset($_GET["action"]) && isset($_GET["id"])) {
         }
 
         // delete the user and all associated rows
-        } elseif ($action === "delete") {
+        elseif ($action === "delete") {
 
             // delete favorites for this user
             $stmt = $pdo->prepare(
                 "DELETE FROM favorites
                 WHERE user_id = ?"
             );
-            $stmt->execute([$userId]);
+            $stmt->execute([$id]);
 
             // delete reviews for this user
             $stmt = $pdo->prepare(
                 "DELETE FROM reviews
                 WHERE user_id = ?"
             );
-            $stmt->execute([$userId]);
+            $stmt->execute([$id]);
 
             // delete the row from the users table
             $stmt = $pdo->prepare(
                 "DELETE FROM users
                 WHERE id = ?"
             );
-            $stmt->execute([$userId]);
+            $stmt->execute([$id]);
         }
 
     header("Location: manage_users.php");
 
     exit();
+    }
 }
 
 $search = "";
