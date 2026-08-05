@@ -7,6 +7,7 @@ require_once __DIR__ . "/../includes/auth.php";
 
 requireAdmin();
 
+// fetch important book information for all books
 $stmt = $pdo->query(
     "SELECT
         id,
@@ -15,9 +16,7 @@ $stmt = $pdo->query(
         genre,
         page_count,
         published_year
-
     FROM books
-
     ORDER BY id DESC"
 );
 

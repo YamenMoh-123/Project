@@ -97,9 +97,7 @@ require_once __DIR__ . "/includes/header.php";
         <button type="submit">Register</button>
     </form>
 
-    <a class="help-link" href="<?= BASE_URL ?>help/user_basics.html">
-        New to Book Archive?
-    </a>
+    <a class="help-link" href="<?= BASE_URL ?>help/user_basics.html"> New to Book Archive? </a>
 
     <p>
         Already have an account?

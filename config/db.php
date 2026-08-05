@@ -4,16 +4,16 @@
 $envFile = __DIR__ . "/../.env";
 
 if (file_exists($envFile)) {
-
     $fileContents = file($envFile, FILE_IGNORE_NEW_LINES);
 
+    // split each line on the = for an input of var_name=var_value
     foreach ($fileContents as $entry) {
         list($key, $value) = explode("=", $entry, 2);
         $_ENV[$key] = $value;
     }
 }
 
-# required variables from env file
+// required variables from env file
 $hostname = $_ENV["DB_HOST"];
 $db_name   = $_ENV["DB_NAME"];
 $user_name = $_ENV["DB_USER"];

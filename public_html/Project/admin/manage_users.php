@@ -103,20 +103,18 @@ $order = match($sort) {
     default => "created_at DESC"
 };
 
-$sql = "
-SELECT
+// select important info for users including sorting order
+$sql = 
+"SELECT
     id,
     name,
     email,
     is_admin,
     is_disabled,
     created_at
-
-FROM users
-
-WHERE name LIKE ?
-
-ORDER BY $order
+ FROM users
+ WHERE name LIKE ?
+ ORDER BY $order
 ";
 
 $stmt = $pdo->prepare($sql);
@@ -177,17 +175,11 @@ require_once __DIR__ . "/../includes/header.php";
                 <td> <?= htmlspecialchars($user["email"]) ?> </td>
 
                 <td>
-                    <?= $user["is_admin"]
-                        ? "Admin"
-                        : "User"
-                    ?>
+                    <?= $user["is_admin"] ? "Admin" : "User" ?>
                 </td>
 
                 <td>
-                    <?= $user["is_disabled"]
-                        ? "Disabled"
-                        : "Active"
-                    ?>
+                    <?= $user["is_disabled"] ? "Disabled" : "Active" ?>
                 </td>
 
                 <td>

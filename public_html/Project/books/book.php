@@ -16,14 +16,10 @@ $stmt = $pdo->prepare(
         books.*,
         AVG(reviews.rating) AS average_rating,
         COUNT(reviews.id) AS review_count
-
     FROM books
-
     LEFT JOIN reviews
         ON books.id = reviews.book_id
-
     WHERE books.id = ?
-
     GROUP BY books.id"
 );
 
@@ -40,14 +36,10 @@ $stmt = $pdo->prepare(
     "SELECT
         reviews.*,
         users.name
-
     FROM reviews
-
     JOIN users
         ON reviews.user_id = users.id
-
     WHERE book_id = ?
-
     ORDER BY created_at DESC"
 );
 
@@ -60,6 +52,7 @@ $userReview = null;
 
 if (isset($_SESSION["user_id"])) {
 
+    // check reviews for a specific user and book
     $stmt = $pdo->prepare(
         "SELECT *
          FROM reviews
@@ -94,7 +87,7 @@ require_once __DIR__ . "/../includes/header.php";
 
         <p> Genre: <?= htmlspecialchars($book["genre"] ?? "") ?> </p>
         <p>
-        <strong>Format:</strong>
+            <strong>Format:</strong>
             <?= htmlspecialchars($book["format"] ?: "Paperback") ?>
         </p>
 
@@ -121,6 +114,7 @@ require_once __DIR__ . "/../includes/header.php";
             How do reviews work?
         </a>
 
+        <!-- display review option depending on if user is logged in -->
         <?php if (!isset($_SESSION["user_id"])): ?>
             <p> Login to write a review. </p>
 
@@ -138,10 +132,7 @@ require_once __DIR__ . "/../includes/header.php";
 
             <form method="POST" action="submit_review.php">
 
-                <input
-                    type="hidden"
-                    name="book_id"
-                    value="<?= $bookId ?>">
+                <input type="hidden" name="book_id" value="<?= $bookId ?>">
 
                 <label> Rating </label>
 
@@ -150,10 +141,7 @@ require_once __DIR__ . "/../includes/header.php";
 
                         <option
                             value="<?= $i ?>"
-                            <?= ($userReview && $userReview["rating"] == $i)
-                                ? "selected"
-                                : "" ?>>
-
+                            <?= ($userReview && $userReview["rating"] == $i) ? "selected" : "" ?>>
                             <?= $i ?> Stars
                         </option>
 
@@ -163,31 +151,19 @@ require_once __DIR__ . "/../includes/header.php";
 
                 <label> Review </label>
 
-                <textarea
-                    name="review_text"
-                    required><?= $userReview["review_text"] ?? "" ?></textarea>
+                <textarea name="review_text" required><?= $userReview["review_text"] ?? "" ?></textarea>
 
                 <button>
-                    <?= $userReview
-                        ? "Update Review"
-                        : "Post Review" ?>
+                    <?= $userReview ? "Update Review" : "Post Review" ?>
                 </button>
 
             </form>
 
             <?php if ($userReview): ?>
-                <form method="POST"
-                      action="delete_review.php">
+                <form method="POST" action="delete_review.php">
 
-                    <input
-                        type="hidden"
-                        name="review_id"
-                        value="<?= $userReview["id"] ?>">
-
-                    <input
-                    type="hidden"
-                    name="book_id"
-                    value="<?= $bookId ?>">
+                    <input type="hidden" name="review_id" value="<?= $userReview["id"] ?>">
+                    <input type="hidden" name="book_id" value="<?= $bookId ?>">
 
                     <button>  Delete Review </button>
 

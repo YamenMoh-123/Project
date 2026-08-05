@@ -8,6 +8,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+// select default theme if not found in db
 $stmt = $pdo->query(
     "SELECT site_theme FROM settings LIMIT 1"
 );

@@ -61,9 +61,7 @@ function uploadBookImage($bookId)
     }
 
     if (!move_uploaded_file( $file["tmp_name"], $destination)) {
-        die(
-            "Could not save image: " . $destination
-        );
+        die("Could not save image: " . $destination);
     }
 
     return "assets/images/books/" . $filename;

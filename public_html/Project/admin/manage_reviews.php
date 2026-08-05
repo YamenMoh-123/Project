@@ -7,18 +7,18 @@ require_once __DIR__ . "/../../includes/auth.php";
 
 requireAdmin();
 
+// check if we got a delete request and we have an id
 if (isset($_GET["action"]) &&
     $_GET["action"] === "delete" &&
     isset($_GET["id"])) {
    
+    // delete the review with the specific id
     $stmt = $pdo->prepare(
         "DELETE FROM reviews
          WHERE id = ?"
     );
 
-    $stmt->execute([
-        $_GET["id"]
-    ]);
+    $stmt->execute( [$_GET["id"]] );
 
     header("Location: manage_reviews.php");
 
@@ -37,6 +37,8 @@ $order = match($group) {
     default => "reviews.created_at DESC"
 };
 
+// select the review info, with the user who created it and the book its for
+// join on users and books for filtering and info
 $sql = "
     SELECT
         reviews.id,
@@ -90,11 +92,7 @@ require_once __DIR__ . "/../../includes/header.php";
     <form method="GET">
         <label> Search </label>
 
-        <input
-        type="text"
-        name="search"
-        value="<?= htmlspecialchars($search) ?>"
-        placeholder="User or book">
+        <input type="text" name="search" value="<?= htmlspecialchars($search) ?>" placeholder="User or book">
 
         <label> Rating </label>
 
@@ -116,30 +114,10 @@ require_once __DIR__ . "/../../includes/header.php";
         <label> Group by </label>
 
         <select name="group">
-            <option
-                value="newest"
-                <?= $group=="newest" ? "selected" : "" ?>>
-                Newest
-            </option>
-
-            <option
-                value="user"
-                <?= $group=="user" ? "selected" : "" ?>>
-                User
-            </option>
-
-            <option
-                value="book"
-                <?= $group=="book" ? "selected" : "" ?>>
-                Book
-            </option>
-
-            <option
-                value="rating"
-                <?= $group=="rating" ? "selected" : "" ?>>
-                Rating
-            </option>
-
+            <option value="newest" <?= $group=="newest" ? "selected" : "" ?>> Newest </option>
+            <option value="user" <?= $group=="user" ? "selected" : "" ?>> User </option>
+            <option value="book" <?= $group=="book" ? "selected" : "" ?>> Book </option>
+            <option value="rating" <?= $group=="rating" ? "selected" : "" ?>> Rating </option>
         </select>
 
         <button> Filter </button>
@@ -162,16 +140,11 @@ require_once __DIR__ . "/../../includes/header.php";
                 <td> <?= htmlspecialchars($review["book_title"]) ?> </td>
                 
                 <td>
-                    <?= str_repeat(
-                        "★",
-                        $review["rating"]
-                    ) ?>
+                    <?= str_repeat("★", $review["rating"]) ?>
                 </td>
 
                 <td>
-                    <?= htmlspecialchars(
-                        $review["review_text"]
-                    ) ?>
+                    <?= htmlspecialchars($review["review_text"]) ?>
                 </td>
 
                 <td> <?= $review["created_at"] ?> </td>

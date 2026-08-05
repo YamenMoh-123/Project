@@ -17,13 +17,11 @@ require_once __DIR__ . "/includes/header.php";
         <h2> Welcome, <?= htmlspecialchars($_SESSION["name"]) ?> </h2>
 
         <p>
-            <strong>Name:</strong>
-            <?= htmlspecialchars($_SESSION["name"]) ?>
+            <strong>Name:</strong> <?= htmlspecialchars($_SESSION["name"]) ?>
         </p>
 
         <p>
-            <strong>Email:</strong>
-            <?= htmlspecialchars($_SESSION["email"]) ?>
+            <strong>Email:</strong> <?= htmlspecialchars($_SESSION["email"]) ?>
         </p>
 
         <p>

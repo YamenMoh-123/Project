@@ -54,6 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $image = $book["image"];
         }
 
+        // update the existing book row for id with new fields
         $stmt = $pdo->prepare(
             "UPDATE books
             SET
@@ -100,25 +101,16 @@ require_once __DIR__ . "/../includes/header.php";
     <form  method="POST" enctype="multipart/form-data">
 
         <label> Title </label>
-        <input
-        name="title"
-        value="<?= htmlspecialchars($book["title"]) ?>">
+        <input name="title" value="<?= htmlspecialchars($book["title"]) ?>">
 
         <label> Author </label>
-        <input
-        name="author"
-        value="<?= htmlspecialchars($book["author"]) ?>">
+        <input name="author" value="<?= htmlspecialchars($book["author"]) ?>">
 
         <label> Pages </label>
-        <input
-        type="number"
-        name="page_count"
-        value="<?= $book["page_count"] ?>">
+        <input type="number" name="page_count" value="<?= $book["page_count"] ?>">
 
         <label> Genre </label>
-        <input
-        name="genre"
-        value="<?= htmlspecialchars($book["genre"] ?? "") ?>">
+        <input name="genre" value="<?= htmlspecialchars($book["genre"] ?? "") ?>">
 
         <label>Format</label>
         <select name="format" required>
@@ -136,10 +128,7 @@ require_once __DIR__ . "/../includes/header.php";
         </select>
 
         <label> Published Year </label>
-        <input
-        type="number"
-        name="published_year"
-        value="<?= $book["published_year"] ?>">
+        <input type="number" name="published_year" value="<?= $book["published_year"] ?>">
 
         <label> Description </label>
         <textarea name="description"><?= htmlspecialchars($book["description"] ?? "") ?></textarea>

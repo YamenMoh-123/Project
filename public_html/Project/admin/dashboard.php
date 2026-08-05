@@ -56,8 +56,7 @@ $reviewCount = $pdo->query("SELECT COUNT(*) FROM reviews")->fetchColumn();
     <h1> Admin Dashboard </h1>
 
     <div class="card">
-        <h2> Welcome </h2>
-        <p> Welcome, <?= htmlspecialchars($_SESSION["name"]) ?> </p>
+        <h2> Welcome, <?= htmlspecialchars($_SESSION["name"]) ?> </h2>
     </div>
 
     <div class="card">

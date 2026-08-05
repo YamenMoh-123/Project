@@ -49,6 +49,7 @@ $orderBy = match($sort) {
     default => "books.title ASC"
 };
 
+// select all book information, and get average rating of all associated reviews by joining the reviews table
 $sql = "
 SELECT
     books.*,
@@ -97,7 +98,7 @@ $sql .= "
 GROUP BY books.id
 ";
 
-// calculate average rating
+// filter for average rating
 if ($minRating !== "") {
     $sql .= "
     HAVING COALESCE(AVG(reviews.rating), 0) >= ?
@@ -150,21 +151,13 @@ if (isset($_SESSION["user_id"])) {
         <form method="GET">
             <label> Search </label>
 
-            <input
-            type="text"
-            name="q"
-            value="<?= htmlspecialchars($q) ?>"
-            placeholder="Search by title or author">
+            <input type="text" name="q" value="<?= htmlspecialchars($q) ?>" placeholder="Search by title or author">
 
             <details>
                 <summary> Advanced Filters </summary>
 
                 <label> Author </label>
-                <input
-                type="text"
-                name="author"
-                value="<?= htmlspecialchars($author) ?>"
-                placeholder="Filter by author">
+                <input type="text" name="author" value="<?= htmlspecialchars($author) ?>" placeholder="Filter by author">
 
                 <label> Genre </label>
                 <select name="genre">
@@ -243,39 +236,30 @@ if (isset($_SESSION["user_id"])) {
 
             <?php endif; ?>
 
-            <h2>
-                <?= htmlspecialchars($book["title"]) ?>
-            </h2>
+            <h2> <?= htmlspecialchars($book["title"]) ?> </h2>
 
             <p>
-
-            <strong>Author:</strong>
-                <?= htmlspecialchars($book["author"]) ?>
+                <strong>Author:</strong> <?= htmlspecialchars($book["author"]) ?>
             </p>
 
             <p>
-                <strong>Genre:</strong>
-                <?= htmlspecialchars($book["genre"] ?: "Unknown") ?>
+                <strong>Genre:</strong> <?= htmlspecialchars($book["genre"] ?: "Unknown") ?>
             </p>
 
             <p>
-                <strong>Format:</strong>
-                <?= htmlspecialchars($book["format"] ?: "Paperback") ?>
+                <strong>Format:</strong> <?= htmlspecialchars($book["format"] ?: "Paperback") ?>
             </p>
 
             <p>
-                <strong>Language:</strong>
-                <?= htmlspecialchars($book["language"] ?: "English") ?>
+                <strong>Language:</strong> <?= htmlspecialchars($book["language"] ?: "English") ?>
             </p>
 
             <p>
-                <strong>Pages:</strong>
-                <?= htmlspecialchars($book["page_count"] ?: "N/A") ?>
+                <strong>Pages:</strong> <?= htmlspecialchars($book["page_count"] ?: "N/A") ?>
             </p>
 
             <p>
-                <strong>Year:</strong>
-                <?= htmlspecialchars($book["published_year"] ?: "N/A") ?>
+                <strong>Year:</strong> <?= htmlspecialchars($book["published_year"] ?: "N/A") ?>
             </p>
 
             <p class="rating">
@@ -311,11 +295,7 @@ if (isset($_SESSION["user_id"])) {
                 <?php endif; ?>
             <?php endif; ?>
 
-            <a
-                class="button"
-                href="book.php?id=<?= urlencode($book["id"]) ?>">
-                View Details
-            </a>
+            <a class="button" href="book.php?id=<?= urlencode($book["id"]) ?>"> View Details </a>
         </div>
 
         <?php endforeach; ?>

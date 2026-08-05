@@ -10,6 +10,7 @@ requireAdmin();
 
 $error = "";
 
+// get fields we need for the insert stmt from the submitted form
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $title = trim($_POST["title"]);
     $author = trim($_POST["author"]);
@@ -20,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $format = $_POST["format"] ?? "Paperback";
     $language = $_POST["language"] ?? "English";
 
+    // ensure mandatory fields exist
     if (!$title || !$author) {
         $error = "Title and author are required.";
     }
@@ -29,6 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (empty($language)) {
         $errors[] = "Language is required.";
     }
+    // insert a new row into the books table with the values we got from the form
+    // we dont have an image path yet so this is null
     else {
         $stmt = $pdo->prepare(
             "INSERT INTO books
@@ -56,15 +60,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $pages,
             $year,
             $description,
-            $image,
+            null,
             $format,
             $language
         ]);
 
         $bookId = $pdo->lastInsertId();
 
+        // upload the image to the proper directory
         $image = uploadBookImage($bookId);
 
+        // now that we have an image we can update the path in the db
         if ($image) {
             $stmt = $pdo->prepare(
                 "UPDATE books
@@ -93,6 +99,7 @@ require_once __DIR__ . "/../includes/header.php";
 
     <h1> Add Book </h1>
 
+    <!-- display error from the form if any -->
     <?php if ($error): ?>
         <p class="error"> <?= htmlspecialchars($error) ?> </p>
 

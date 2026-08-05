@@ -7,13 +7,13 @@ require_once __DIR__ . "/../../../config/db.php";
 if (!isset($_SESSION["user_id"])) {
     header("Location: login.php");
     exit();
-
 }
 
 $bookId = $_POST["book_id"];
 $rating = $_POST["rating"];
 $text = trim($_POST["review_text"]);
 
+// insert into the reviews table for a book and user id. update if a row already exists
 $stmt = $pdo->prepare(
     "INSERT INTO reviews
     (
@@ -22,7 +22,6 @@ $stmt = $pdo->prepare(
         rating,
         review_text
     )
-
     VALUES
     (
         ?,
@@ -30,9 +29,7 @@ $stmt = $pdo->prepare(
         ?,
         ?
     )
-
     ON DUPLICATE KEY UPDATE
-
         rating = VALUES(rating),
         review_text = VALUES(review_text)"
 );

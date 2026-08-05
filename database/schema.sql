@@ -1,3 +1,7 @@
+/* users table uses an int as the primary key
+contains name, email, password (that is inserted as a hashed value)
+admin and disabled flags and created at timestamp. users are unique on email
+ */
 CREATE TABLE users (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -8,6 +12,8 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+/* books contain title, author, page count, description, image, genre, format, language
+year published, create at timestamp and is unique on title and author */
 CREATE TABLE books (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
@@ -23,7 +29,9 @@ CREATE TABLE books (
     UNIQUE(title, author)
 );
 
-
+/* reviews are unique on book_id and user_id contain rating and review text, created at timestamp
+delete an entry if either book id or user id is deleted in their respective tables
+(cant have a review on no book, or a review with no creator) */
 CREATE TABLE reviews (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     book_id INT UNSIGNED NOT NULL,
@@ -43,7 +51,9 @@ CREATE TABLE reviews (
     UNIQUE(book_id, user_id)
 );
 
-
+/* favorites are unique on user id and book id this is used as a toggle for users favorites 
+rows are deleted if a user is deleted or a book is deleted 
+(cant have a favorite on no book, or a favorite for no user */
 CREATE TABLE favorites (
     user_id INT UNSIGNED NOT NULL,
     book_id INT UNSIGNED NOT NULL,

@@ -8,6 +8,7 @@ require_once __DIR__ . "/../../../config/db.php";
 
 $message = "";
 
+// get the selected information from the form
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $theme = $_POST["theme"];
     $layout = $_POST["layout"];
@@ -41,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 
 $stmt = $pdo->query(
-    // fetch the theme and layout values from the settings table to display
+    // fetch the current theme and layout values from the settings table to display
     "SELECT 
         site_theme,
         book_layout
@@ -128,9 +129,7 @@ require_once __DIR__ . "/../includes/header.php";
 
             <br><br>
 
-            <button type="submit">
-                Save Settings
-            </button>
+            <button type="submit"> Save Settings </button>
 
         </form>
     </div>
